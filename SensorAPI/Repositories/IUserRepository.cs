@@ -20,6 +20,6 @@ namespace SensorAPI.Repositories
         List<User> GetUser();
 
         //delete users
-        string DeleteUser(User user);
+        string DeleteUser(string user);
     }
 }

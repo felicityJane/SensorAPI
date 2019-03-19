@@ -19,7 +19,10 @@ namespace SensorAPI.Repositories
         //get all entries by userId
         List<SensorData> GetSensorData();
         
-        //delete entry
+        //delete single entry
         string DeleteSensorData(int id);
+
+        //delete all entries by userId
+        string DeleteSensorDataUser(string userId);
     }
 }

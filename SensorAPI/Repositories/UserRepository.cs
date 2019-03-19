@@ -62,14 +62,14 @@ namespace SensorAPI.Repositories
             return user;
         }
 
-        public string DeleteUser(User user)
+        public string DeleteUser(string userId)
         {
             try
             {
                 using (var context = new HeadsUpContext())
                 {
-                    context.Users.Attach(user);
-                    context.Users.Remove(user);
+                    var user = context.Users.Find(userId);
+                    context.Users.Remove(user ?? throw new InvalidOperationException());
                     context.SaveChanges();
                 }
             }

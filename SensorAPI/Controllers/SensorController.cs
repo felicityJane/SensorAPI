@@ -18,17 +18,6 @@ namespace SensorAPI.Controllers
             _sensorRepository = sensorRepository;
         }
 
-        [HttpGet]
-        [Route("private")]
-        [Authorize]
-        public IHttpActionResult Private()
-        {
-            return Json(new
-            {
-                Message = "Hello from a private endpoint! You need to be authenticated to see this."
-            });
-        }
-
         [Route("postdata")]
         [HttpPost]
         [Authorize]
@@ -80,13 +69,28 @@ namespace SensorAPI.Controllers
         }
 
         [Route("deletesensordata/{id}")]
-        [HttpPost]
         [Authorize]
+        [HttpDelete]
         public IHttpActionResult DeleteSensorData(int id)
         {
             try
             {
                 _sensorRepository.DeleteSensorData(id);
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message);
+            }
+            return Ok("entry removed");
+        }
+
+        [Route("deletesensordatauser/{userId}")]
+        [HttpDelete]
+        public IHttpActionResult DeleteSensorDataUser(string userId)
+        {
+            try
+            {
+                _sensorRepository.DeleteSensorDataUser(userId);
             }
             catch (Exception e)
             {

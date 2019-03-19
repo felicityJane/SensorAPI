@@ -6,6 +6,7 @@ using SensorAPI.Repositories;
 
 namespace SensorAPI.Controllers
 {
+    [RoutePrefix("user")]
     public class UserController : ApiController
     {
         private IUserRepository _userRepository;
@@ -15,7 +16,7 @@ namespace SensorAPI.Controllers
             _userRepository = userRepository;
         }
 
-        [Route("user/adduser")]
+        [Route("adduser")]
         [Authorize]
         [HttpPost]
         public IHttpActionResult AddUser(User user)
@@ -31,7 +32,7 @@ namespace SensorAPI.Controllers
            return Ok("user added");
         }
 
-        [Route("user/getuser/{userName}")]
+        [Route("getuser/{userName}")]
         [Authorize]
         [HttpGet]
         public IHttpActionResult GetUser(string userName)
@@ -48,7 +49,7 @@ namespace SensorAPI.Controllers
             return Ok(user);
         }
 
-        [Route("user/getuser")]
+        [Route("getuser")]
         [Authorize]
         [HttpGet]
         public IHttpActionResult GetUser()
@@ -65,14 +66,14 @@ namespace SensorAPI.Controllers
             return Ok(user);
         }
 
-        [Route("user/deleteuser")]
+        [Route("deleteuser/{userId}")]
         [Authorize]
-        [HttpPost]
-        public IHttpActionResult DeleteUser(User user)
+        [HttpDelete]
+        public IHttpActionResult DeleteUser(string userId)
         {
             try
             {
-                _userRepository.DeleteUser(user);
+                _userRepository.DeleteUser(userId);
             }
             catch (Exception e)
             {
