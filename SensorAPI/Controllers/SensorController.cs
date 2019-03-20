@@ -19,8 +19,8 @@ namespace SensorAPI.Controllers
         }
 
         [Route("postdata")]
-        [HttpPost]
         [Authorize]
+        [HttpPost]
         public IHttpActionResult PostData(SensorData sensorData)
         {        
             try
@@ -35,8 +35,8 @@ namespace SensorAPI.Controllers
         }
 
         [Route("getsensordata/{userId}")]
-        [HttpGet]
         [Authorize]
+        [HttpGet]
         public IHttpActionResult GetSensorData(string userId)
         {
             List<SensorData> sensorData;
@@ -52,8 +52,8 @@ namespace SensorAPI.Controllers
         }
 
         [Route("getsensordata")]
-        [HttpGet]
         [Authorize]
+        [HttpGet]
         public IHttpActionResult GetSensorData()
         {
             List<SensorData> sensorData;
@@ -86,6 +86,7 @@ namespace SensorAPI.Controllers
 
         [Route("deletesensordatauser/{userId}")]
         [HttpDelete]
+        [Authorize]
         public IHttpActionResult DeleteSensorDataUser(string userId)
         {
             try
